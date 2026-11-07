@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff4f8">
+<title>My Collection ♡</title>
+<style>
+:root{
+  --bg:#fff7fa; --paper:#ffffff; --pink:#f6c8d9; --pink-dark:#c66b91;
+  --pink-deep:#a94f78; --ink:#59434d; --muted:#987d88; --line:#f3dce6;
+  --shadow:0 10px 28px rgba(190,111,145,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 0%,#ffeaf2 0,transparent 28rem),var(--bg);
+ color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}
+.wrap{width:min(980px,calc(100% - 32px));margin:auto}
+header{text-align:center;padding:48px 0 25px}
+.eyebrow{font-size:12px;letter-spacing:.22em;color:var(--pink-dark)}
+h1{font-family:Georgia,serif;font-size:clamp(34px,7vw,54px);font-weight:500;color:var(--pink-deep);margin:10px 0 8px}
+.subtitle{font-size:13px;color:var(--muted);letter-spacing:.08em}
+.ribbon{color:#e5a6bf;letter-spacing:.35em;margin-top:16px}
+.panel{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);margin:18px 0}
+.panel h2{font-size:17px;margin:0 0 16px;color:var(--pink-deep)}
+.form-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;color:var(--muted)}
+input,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fffafd;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:#e7a8c1;box-shadow:0 0 0 3px #fce8f0}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+button,.file-button{border:0;border-radius:999px;padding:11px 18px;cursor:pointer;transition:.18s}
+.primary{background:#e9a9c1;color:white;font-weight:700}
+.primary:hover{background:#d98eac;transform:translateY(-1px)}
+.secondary,.file-button{background:#fff0f5;color:var(--pink-deep);border:1px solid var(--line)}
+button:focus-visible,.file-button:focus-visible{outline:3px solid #e9a9c1;outline-offset:2px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:28px 2px 14px}
+.toolbar h2{font-size:19px;margin:0}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.filter{background:#fff;border:1px solid var(--line);color:var(--muted);padding:8px 13px;font-size:12px}
+.filter.active{background:#f8dce7;color:var(--pink-deep);border-color:#f0bfd1}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-bottom:35px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:18px;box-shadow:var(--shadow);min-width:0;position:relative}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tag{display:inline-flex;align-items:center;background:#fff0f5;color:var(--pink-deep);border-radius:999px;padding:6px 10px;font-size:11px}
+.date{font-size:11px;color:#b69da7}
+.card h3{font-size:16px;line-height:1.5;margin:14px 0 8px;overflow-wrap:anywhere}
+.card-url{display:block;color:var(--pink-dark);font-size:12px;overflow-wrap:anywhere;text-decoration:none}
+.card-url:hover{text-decoration:underline}
+.card-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:14px}
+.small{padding:7px 11px;font-size:11px}
+.delete{background:#fff7f9;color:#ad7189;border:1px solid var(--line)}
+.empty{grid-column:1/-1;text-align:center;background:#fff;border:1px dashed #eac4d3;border-radius:20px;padding:38px 18px;color:var(--muted);line-height:1.9}
+footer{text-align:center;color:#b99eaa;font-size:11px;padding:10px 0 35px}
+.note{font-size:11px;color:var(--muted);line-height:1.7;margin:12px 2px 0}
+.hidden{display:none!important}
+@media(max-width:650px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.grid{grid-template-columns:1fr}.panel{padding:17px}header{padding-top:35px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">♡ MY LITTLE ARCHIVE ♡</div>
+  <h1>My Collection ♡</h1>
+  <div class="subtitle">好きなもの、行きたい場所、忘れたくない投稿。</div>
+  <div class="ribbon">୨୧ ───────── ୨୧</div>
+</header>
+
+<section class="panel" aria-labelledby="form-title">
+  <h2 id="form-title">🎀 コレクションを追加</h2>
+  <form id="add-form">
+    <div class="form-grid">
+      <div class="field">
+        <label for="category">カテゴリ</label>
+        <select id="category" required>
+          <option>ご飯</option><option>旅行先</option><option>欲しいもの</option><option>その他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="title">タイトル・ひとこと</label>
+        <input id="title" maxlength="80" placeholder="例：いつか行きたいカフェ" required>
+      </div>
+      <div class="field full">
+        <label for="url">自分のX投稿のURL</label>
+        <input id="url" type="url" placeholder="https://x.com/ユーザー名/status/..." required>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="primary" type="submit">＋ 追加する</button>
+      <button class="secondary" type="reset">入力をクリア</button>
+    </div>
+  </form>
+  <p class="note">追加したリンクは、このブラウザに保存されます。別の端末・ブラウザとは自動同期されません。大切なデータは「バックアップ」で保存してね。</p>
+</section>
+
+<div class="toolbar">
+  <h2>My Favorite Posts <span id="count" style="color:#c66b91;font-size:13px"></span></h2>
+  <div class="filters" id="filters" aria-label="カテゴリで絞り込み">
+    <button class="filter active" data-filter="すべて">すべて</button>
+    <button class="filter" data-filter="ご飯">🍰 ご飯</button>
+    <button class="filter" data-filter="旅行先">✈️ 旅行先</button>
+    <button class="filter" data-filter="欲しいもの">🎁 欲しいもの</button>
+    <button class="filter" data-filter="その他">♡ その他</button>
+  </div>
+</div>
+
+<main class="grid" id="collection" aria-live="polite"></main>
+
+<div class="actions" style="justify-content:center;margin:0 0 28px">
+  <button class="secondary" id="export">↓ バックアップ</button>
+  <label class="file-button" for="import-file">↑ バックアップを読み込む</label>
+  <input class="hidden" id="import-file" type="file" accept="application/json">
+</div>
+<footer>made with ♡ · My Collection</footer>
+</div>
+<script>
+const STORAGE_KEY = "my-collection-posts-v1";
+const categories = ["ご飯","旅行先","欲しいもの","その他"];
+let posts = [];
+let currentFilter = "すべて";
+try { posts = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); if(!Array.isArray(posts)) posts=[]; } catch { posts=[]; }
+
+const form = document.getElementById("add-form");
+const collection = document.getElementById("collection");
+const count = document.getElementById("count");
+
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); render(); }
+function safeUrl(value){
+  try {
+    const u = new URL(value);
+    return (u.protocol === "https:" && (u.hostname === "x.com" || u.hostname === "www.x.com" || u.hostname === "twitter.com" || u.hostname === "www.twitter.com")) ? u.href : null;
+  } catch { return null; }
+}
+function render(){
+  const shown = posts.filter(p => currentFilter === "すべて" || p.category === currentFilter);
+  count.textContent = `(${shown.length})`;
+  collection.replaceChildren();
+  if(!shown.length){
+    const empty=document.createElement("div"); empty.className="empty";
+    empty.innerHTML="まだ投稿がありません ♡<br>上のフォームからお気に入りのツイートを追加してね。";
+    collection.append(empty); return;
+  }
+  shown.forEach(post=>{
+    const card=document.createElement("article"); card.className="card";
+    const top=document.createElement("div"); top.className="card-top";
+    const tag=document.createElement("span"); tag.className="tag"; tag.textContent=post.category;
+    const date=document.createElement("span"); date.className="date"; date.textContent=post.date || "";
+    top.append(tag,date);
+    const title=document.createElement("h3"); title.textContent=post.title;
+    const link=document.createElement("a"); link.className="card-url"; link.href=post.url; link.target="_blank"; link.rel="noopener noreferrer"; link.textContent="元のX投稿を見る ↗";
+    const actions=document.createElement("div"); actions.className="card-actions";
+    const del=document.createElement("button"); del.className="small delete"; del.textContent="削除";
+    del.addEventListener("click",()=>{ if(confirm("この項目を削除しますか？")){posts=posts.filter(p=>p.id!==post.id);save();} });
+    actions.append(del); card.append(top,title,link,actions); collection.append(card);
+  });
+}
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const category=document.getElementById("category").value;
+  const title=document.getElementById("title").value.trim();
+  const url=safeUrl(document.getElementById("url").value.trim());
+  if(!url){alert("X（x.com / twitter.com）の投稿URLを入力してね。");return;}
+  if(!title){alert("タイトルを入力してね。");return;}
+  posts.unshift({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),category,title,url,date:new Date().toLocaleDateString("ja-JP")});
+  save(); form.reset(); document.getElementById("title").focus();
+});
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-filter]"); if(!b)return;
+  currentFilter=b.dataset.filter;
+  document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
+  render();
+});
+document.getElementById("export").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(posts,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my-collection-backup.json";a.click();URL.revokeObjectURL(a.href);
+});
+document.getElementById("import-file").addEventListener("change",async e=>{
+  const file=e.target.files[0]; if(!file)return;
+  try{
+    const data=JSON.parse(await file.text());
+    if(!Array.isArray(data)||!data.every(p=>p&&categories.includes(p.category)&&typeof p.title==="string"&&safeUrl(p.url))){
+      throw new Error("invalid");
+    }
+    if(confirm("現在のコレクションを読み込んだ内容に置き換えますか？")){
+      posts=data;save();alert("バックアップを読み込みました ♡");
+    }
+  }catch{alert("このバックアップファイルは読み込めませんでした。");}
+  e.target.value="";
+});
+render();
+</script>
+</body>
+</html>
